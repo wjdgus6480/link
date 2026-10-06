@@ -1,0 +1,173 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #f5f5f5;
+  --surface: #ffffff;
+  --text: #1e1e1e;
+  --text-sub: #767676;
+  --placeholder: #bbbbbb;
+  --border: #eeeeee;
+  /* Darkened from #2AC1BC so white button text and accent text stay above 3:1. */
+  --accent: #0e9c97;
+  --accent-hover: #0b8a85;
+  --accent-brand: #2ac1bc;
+  --hover-bg: #e9f9f8;
+  --hover-bg-strong: #d6f3f1;
+  --point: #ffd600;
+  --error: #f04452;
+  --error-hover: #d93441;
+  --error-bg: #fdecee;
+  --shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+  --shadow-hover: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Malgun Gothic", sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Buttons */
+.btn {
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.btn:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+.btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+.btn:disabled {
+  background: var(--border);
+  color: var(--text-sub);
+  cursor: not-allowed;
+}
+
+/* Cards */
+.card-hover {
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.card-hover:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-2px);
+}
+
+/* Sidebar items */
+.nav-item {
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.nav-item:hover {
+  background: var(--hover-bg);
+  color: var(--accent);
+}
+
+/* Inputs / selects */
+.field {
+  transition: border-color 0.2s ease;
+}
+.field::placeholder {
+  color: var(--placeholder);
+}
+.field:focus {
+  border-color: var(--accent);
+  outline: none;
+}
+.field[aria-invalid="true"] {
+  border-color: var(--error);
+}
+.select-field {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23767676' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 38px;
+}
+
+/* Logo link */
+.logo-link {
+  transition: opacity 0.2s ease;
+}
+.logo-link:hover {
+  opacity: 0.8;
+}
+
+/* Secondary buttons */
+.btn-secondary {
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.btn-secondary:hover:not(:disabled) {
+  background: var(--hover-bg-strong);
+}
+.btn-secondary:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+/* Modal */
+/* Modals can render inside hover-revealed containers (e.g. .folder-actions),
+   so opt back in to clicks instead of inheriting pointer-events: none. */
+.modal,
+.modal::backdrop {
+  pointer-events: auto;
+}
+.modal::backdrop {
+  background: rgba(0, 0, 0, 0.4);
+}
+.modal[open] {
+  animation: modal-in 0.2s ease;
+}
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+}
+
+/* Danger buttons */
+.btn-danger {
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.btn-danger:hover {
+  background: var(--error-hover);
+}
+.btn-danger:active {
+  transform: scale(0.97);
+}
+
+/* Sidebar folder: edit/delete buttons replace the count on hover/focus */
+.folder-item:hover .nav-item {
+  background: var(--hover-bg);
+  color: var(--accent);
+}
+.folder-count {
+  transition: opacity 0.2s ease;
+}
+.folder-actions {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+.folder-item:hover .folder-count,
+.folder-item:focus-within .folder-count {
+  opacity: 0;
+}
+.folder-item:hover .folder-actions,
+.folder-item:focus-within .folder-actions {
+  opacity: 1;
+  pointer-events: auto;
+}
+.folder-edit,
+.folder-delete {
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.folder-edit:hover,
+.folder-edit:focus-visible {
+  background: var(--hover-bg-strong);
+  color: var(--accent);
+}
+.folder-delete:hover,
+.folder-delete:focus-visible {
+  background: var(--error-bg);
+  color: var(--error);
+}
